@@ -2,8 +2,9 @@ import argparse
 import fnmatch
 import os
 import re
+from jootranslate import __version__
 
-class JTranslate(object):
+class jootranslate(object):
 
     def __init__(self, args):
         """
@@ -38,11 +39,7 @@ class JTranslate(object):
         :param patterns:
         :return:
         """
-        file_name = os.path.join(self.args.out, '%s.%s.ini' % (self.args.lang, self.args.com.lower()))
-        if not os.path.isfile(file_name):
-            f = open(file_name, 'w+')
-            f.close()
-        with open(file_name, 'r+') as f:
+        with open(self.get_filename(), 'wr+') as f:
             for p in patterns:
                 found = any(p in line for line in f)
                 if not found:
@@ -50,6 +47,14 @@ class JTranslate(object):
                     f.write('%s=""\n' % p)
                     f.seek(0, os.SEEK_SET)
         f.close()
+
+    def get_filename(self):
+        """
+
+        :return:
+        """
+        file_name = os.path.join(self.args.out, '%s.%s.ini' % (self.args.lang, self.args.com.lower()))
+        return file_name
 
 
 def main():
@@ -59,7 +64,7 @@ def main():
     parser.add_argument('--lang', dest='lang', default='en-GB', help="language localisation. default is en-GB")
     parser.add_argument('--out', dest='out', default='.', help="where to save the file")
     args = parser.parse_args()
-    jf = JTranslate(args=args)
+    jf = jootranslate(args=args)
     jf.read_dir()
 
 

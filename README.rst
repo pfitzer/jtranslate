@@ -1,10 +1,16 @@
-jtranslate
+jootranslate
 ===========
 search for JText translations in php files and generates the ini files. If the file exist only new translation strings will
-be appended.
+be added.
+
+installation
+------------
+with pip
+""""""""
+pip install jootranslate
 
 usage
 -----
-cli.py --source /path/to/search/directory --com [your_component]
+jootranslate --source /path/to/search/directory --com [your_component]
 
-use cli.py -h to see a full list of all options
+jootranslate -h to see a full list of all options

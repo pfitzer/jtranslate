@@ -111,3 +111,4 @@ venv.bak/
 # ini files
 *.ini
 
+/jootranslate.egg-info/

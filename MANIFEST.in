@@ -1,0 +1,10 @@
+exclude .gitignore
+exclude .idea
+include README.rst
+include LICENSE.txt
+include setup.cfg
+prune .cache
+prune .git
+prune build
+prune dist
+recursive-exclude *.egg-info *
