@@ -31,5 +31,6 @@ setup(
         'Intended Audience :: End Users/Desktop',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Topic :: Software Development :: Localization'
     ]
 )
