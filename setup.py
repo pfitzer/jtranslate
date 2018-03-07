@@ -13,7 +13,7 @@ setup(
     version = __version__,
     description = 'cli tool to generate translation files for joomla',
     long_description = long_description,
-    url = 'https://github.com/pfitzer/jootranslate.git',
+    url = 'https://github.com/pfitzer/jtranslate.git',
     author = __author__,
     author_email = 'michael@mp-development.de',
     license = 'MIT',
