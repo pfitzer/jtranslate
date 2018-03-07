@@ -13,7 +13,8 @@ class JooTranslate(object):
         :param args:
         """
         self.args = args
-        self.search_pattern = r'JText::_\((\'|"){1}(.*?)(\'|"){1}\)'
+        self.search_pattern = r'(label=|description=|JText::_\()(\'|"){1}(.*?)(\'|"){1}'
+        self.xml_patterns = [r'label=\"(.*?)\"', r'description=\"(.*?)\"']
         self.set_file_paths()
 
     def read_dir(self):
@@ -24,15 +25,16 @@ class JooTranslate(object):
         for key, value in self.paths.items():
             patterns = []
             for folder, dirs, files in os.walk(value, topdown=False):
-                for filename in fnmatch.filter(files, '*.php'):
-                    with open(os.path.join(folder, filename), 'rb') as dest:
-                        for l in dest.readlines():
-                            try:
-                                pattern = re.search(self.search_pattern, l.decode(('utf8'))).group(2)
-                                if self.args.com.upper() in pattern:
-                                    patterns.append(pattern)
-                            except:
-                                continue
+                for filename in files:
+                    if filename.endswith(('.php', '.xml')):
+                        with open(os.path.join(folder, filename), 'rb') as dest:
+                            for l in dest.readlines():
+                                try:
+                                    pattern = re.search(self.search_pattern, l.decode(('utf8'))).group(3)
+                                    if self.args.com.upper() in pattern:
+                                        patterns.append(pattern)
+                                except:
+                                    continue
 
             self.write_file(value, patterns)
 

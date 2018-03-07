@@ -35,5 +35,5 @@ class TestCli(object):
         assert af.read() == 'COM_TEST_TEST_STRING=""\n'
         af.close()
         cf = open(self.com_lang, 'r')
-        assert cf.read() == 'COM_TEST_TEST_STRING=""\n'
+        assert cf.read() == 'COM_TEST_TEST_STRING=""\nCOM_TEST_FORM=""\n'
         cf.close()

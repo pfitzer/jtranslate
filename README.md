@@ -3,7 +3,7 @@
 
 
 ## jootranslate
-Searches for JText::_ translations in php files and generates the ini files. If the file exist only new translation strings will
+Searches for JText::_ translations in php and xml files and generates the ini files. If the file exist only new translation strings will
 be added.
 
 This is just a little helper so you don`t have to copy and paste all your translation strings by hand.
@@ -43,4 +43,4 @@ to see a full list of all options
 
 **todo**
 
-Parse the xml files for translations and generate the *.sys.ini files
+Generate the *.sys.ini files

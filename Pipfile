@@ -8,7 +8,8 @@ name = "pypi"
 [dev-packages]
 
 pytest = "*"
-pytest-runner = "*"
+"pytest-runner" = "*"
+"pytest-cov" = "*"
 
 
 [packages]
