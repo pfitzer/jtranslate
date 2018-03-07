@@ -11,9 +11,9 @@ Your component needs the following directory structure
     administrator
         - components
             - com_COMPONENTNAME
-            - controllers
-            - language
-            - etc ...
+                - controllers
+                - language
+                - etc ...
     components
         - com_COMPONENTNAME
             - controllers
