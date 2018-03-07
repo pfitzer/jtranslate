@@ -10,6 +10,7 @@ name = "pypi"
 pytest = "*"
 "pytest-runner" = "*"
 "pytest-cov" = "*"
+"setuptools-markdown" = "*"
 
 
 [packages]
