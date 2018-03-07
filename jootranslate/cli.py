@@ -28,7 +28,7 @@ class JooTranslate(object):
                     with open(os.path.join(folder, filename), 'rb') as dest:
                         for l in dest.readlines():
                             try:
-                                pattern = re.search(self.search_pattern, l).group(2)
+                                pattern = re.search(self.search_pattern, l.decode(('utf8'))).group(2)
                                 if self.args.com.upper() in pattern:
                                     patterns.append(pattern)
                             except:
