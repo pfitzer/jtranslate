@@ -8,4 +8,5 @@ prune .cache
 prune .git
 prune build
 prune dist
+prune tests
 recursive-exclude *.egg-info *

@@ -20,7 +20,9 @@ class TestCli(object):
     @classmethod
     def teardown_class(self):
         os.remove(self.admin_lang)
+        os.rmdir(os.path.dirname(self.admin_lang))
         os.remove(self.com_lang)
+        os.rmdir(os.path.dirname(self.com_lang))
 
     def test_files_exist(self):
         assert os.path.isfile(self.admin_lang)

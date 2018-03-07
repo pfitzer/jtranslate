@@ -44,6 +44,8 @@ class JooTranslate(object):
         :return:
         """
         lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
+        if not os.path.exists(os.path.dirname(lang_file)):
+            os.mkdir(os.path.dirname(lang_file))
         with open(lang_file, 'w+') as f:
             for p in patterns:
                 found = any(p in line for line in f)
