@@ -1,5 +1,9 @@
 exclude .gitignore
 exclude .idea
+exclude .travis.yml
+exclude Pipfile
+exclude Pipfile.lock
+exclude requirements.txt
 include README.rst
 include LICENSE.txt
 include CODE_OF_CONDUCT.md
@@ -8,5 +12,4 @@ prune .cache
 prune .git
 prune build
 prune dist
-prune tests
 recursive-exclude *.egg-info *
