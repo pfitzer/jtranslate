@@ -33,5 +33,6 @@ local
 
     jootranslate --source /path/to/component/root --com your_component
 
+to see a full list of all options
 
-`jootranslate -h` to see a full list of all options
+    jootranslate -h
