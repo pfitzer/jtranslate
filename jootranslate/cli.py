@@ -21,7 +21,7 @@ class JooTranslate(object):
 
         :return:
         """
-        for key, value in self.paths.iteritems():
+        for key, value in self.paths.items():
             patterns = []
             for folder, dirs, files in os.walk(value, topdown=False):
                 for filename in fnmatch.filter(files, '*.php'):
