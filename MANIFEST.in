@@ -4,7 +4,7 @@ exclude .travis.yml
 exclude Pipfile
 exclude Pipfile.lock
 exclude requirements.txt
-include README.rst
+include README.md
 include LICENSE.txt
 include CODE_OF_CONDUCT.md
 include setup.cfg
