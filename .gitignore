@@ -112,3 +112,6 @@ venv.bak/
 *.ini
 
 /jootranslate.egg-info/
+
+Pipfile.lock
+/.pytest_cache/

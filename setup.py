@@ -18,6 +18,8 @@ setup(
     author_email = 'michael@mp-development.de',
     license = 'MIT',
     keywords = 'joomla cli translations',
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     packages = find_packages(),
     entry_points = {
         'console_scripts': [

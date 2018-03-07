@@ -1,3 +1,8 @@
+.. |PYPI| image:: https://img.shields.io/pypi/v/jootranslate.svg
+.. |TRAVIS| image:: https://travis-ci.org/pfitzer/jtranslate.svg?branch=master
+
+|PYPI| |TRAVIS|
+
 ============
 jootranslate
 ============
