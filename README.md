@@ -1,5 +1,5 @@
 [![](https://img.shields.io/pypi/v/jootranslate.svg)](https://pypi.python.org/pypi?name=jootranslate&:action=display)  [![](https://travis-ci.org/pfitzer/jtranslate.svg?branch=master)](https://travis-ci.org/pfitzer/jtranslate) [![](https://pyup.io/repos/github/pfitzer/jtranslate/shield.svg?t=1520427395490)](https://pyup.io/account/repos/github/pfitzer/jtranslate/) [![Python 3](https://pyup.io/repos/github/pfitzer/jtranslate/python-3-shield.svg)](https://pyup.io/repos/github/pfitzer/jtranslate/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/jootranslate.svg)](https://pypi.python.org/pypi?name=jootranslate&:action=display)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/jootranslate.svg)](https://pypi.python.org/pypi?name=jootranslate&:action=display) [![Documentation Status](https://readthedocs.org/projects/jootranslate/badge/?version=latest)](http://jootranslate.readthedocs.io/?badge=latest)
 
 
 ## jootranslate

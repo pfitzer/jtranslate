@@ -1,4 +1,5 @@
 |image0| |image1| |image2| |Python 3| |PyPI - Python Version|
+|Documentation Status|
 
 jootranslate
 ------------
@@ -67,3 +68,5 @@ Generate the \*.sys.ini files
    :target: https://pyup.io/repos/github/pfitzer/jtranslate/
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/jootranslate.svg
    :target: https://pypi.python.org/pypi?name=jootranslate&:action=display
+.. |Documentation Status| image:: https://readthedocs.org/projects/jootranslate/badge/?version=latest
+   :target: http://jootranslate.readthedocs.io/?badge=latest
