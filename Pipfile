@@ -12,6 +12,7 @@ pytest = "*"
 "pytest-cov" = "*"
 "setuptools-markdown" = "*"
 sphinx = "*"
+"sphinx-autobuild" = "*"
 
 
 [packages]

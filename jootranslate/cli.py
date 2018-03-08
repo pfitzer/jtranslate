@@ -10,7 +10,8 @@ class JooTranslate(object):
     def __init__(self, args):
         """
 
-        :param args:
+        :param args: console arguments
+        :type args: argparse
         """
         self.args = args
         self.search_pattern = r'(label=|description=|JText::_\()(\'|"){1}(.*?)(\'|"){1}'
@@ -18,8 +19,9 @@ class JooTranslate(object):
 
     def read_dir(self):
         """
+        reads all php and xml files and searches for regex pattern
 
-        :return:
+        :return void:
         """
         for key, value in self.paths.items():
             patterns = []
@@ -39,10 +41,13 @@ class JooTranslate(object):
 
     def write_file(self, path, patterns):
         """
+        writes all found patterns to the ini file if pattern not exist
 
-        :param path:
-        :param patterns:
-        :return:
+        :param path: the path to administrator or component root
+        :type path: str
+        :param patterns: list of found translation strings
+        :type patterns: list
+        :return void:
         """
         lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
         if not os.path.exists(os.path.dirname(lang_file)):
@@ -59,14 +64,16 @@ class JooTranslate(object):
     def get_filename(self):
         """
 
-        :return:
+        :return: name of the language ini file
+        :rtype: str
         """
         return '%s.%s.ini' % (self.args.lang, self.args.com.lower())
 
     def set_file_paths(self):
         """
+        sets the needed paths to administrator and component part
 
-        :return:
+        :return: void
         """
         self.paths['component'] = os.path.join(self.args.path, 'components', self.args.com)
         self.paths['admin'] = os.path.join(self.args.path, 'administrator', 'components', self.args.com)
