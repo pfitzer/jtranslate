@@ -14,7 +14,6 @@ class JooTranslate(object):
         """
         self.args = args
         self.search_pattern = r'(label=|description=|JText::_\()(\'|"){1}(.*?)(\'|"){1}'
-        self.xml_patterns = [r'label=\"(.*?)\"', r'description=\"(.*?)\"']
         self.set_file_paths()
 
     def read_dir(self):
