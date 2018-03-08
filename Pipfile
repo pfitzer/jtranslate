@@ -7,10 +7,11 @@ name = "pypi"
 
 [dev-packages]
 
-"pytest" = "*"
+pytest = "*"
 "pytest-runner" = "*"
 "pytest-cov" = "*"
 "setuptools-markdown" = "*"
+sphinx = "*"
 
 
 [packages]
