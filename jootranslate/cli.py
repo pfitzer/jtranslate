@@ -52,11 +52,17 @@ class JooTranslate(object):
         lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
         if not os.path.exists(os.path.dirname(lang_file)):
             os.mkdir(os.path.dirname(lang_file))
-        with open(lang_file, 'w+') as f:
+        try:
+            text = open(lang_file, 'r').read()
+        except:
+            text = False
+        with open(lang_file, 'a+') as f:
             for p in patterns:
                 found = any(p in line for line in f)
                 if not found:
                     f.seek(0, os.SEEK_END)
+                    if text and not text[-1:] == '\n':
+                        f.write('\n')
                     f.write('%s=""\n' % p)
                     f.seek(0, os.SEEK_SET)
         f.close()
