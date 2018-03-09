@@ -109,7 +109,7 @@ venv.bak/
 .idea/
 
 # ini files
-*.ini
+# *.ini
 
 /jootranslate.egg-info/
 
