@@ -16,6 +16,7 @@ sphinx = "*"
 
 
 [packages]
+configobj = "*"
 
 
 

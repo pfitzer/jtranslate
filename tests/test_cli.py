@@ -34,8 +34,8 @@ class TestCli(object):
 
     def test_file_content(self):
         af = open(self.admin_lang, 'r')
-        assert af.read() == 'COM_TEST_KEEPME="translated"\nCOM_TEST_TEST_STRING=""\n'
+        assert af.read() == "COM_TEST_KEEPME = 'translated'\nCOM_TEST_TEST_STRING = ''\n"
         af.close()
         cf = open(self.com_lang, 'r')
-        assert cf.read() == 'COM_TEST_TEST_STRING=""\nCOM_TEST_FORM=""\n'
+        assert cf.read() == "COM_TEST_TEST_STRING = ''\nCOM_TEST_FORM = ''\n"
         cf.close()

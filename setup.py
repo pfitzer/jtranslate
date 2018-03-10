@@ -11,6 +11,9 @@ setup(
     author_email='michael@mp-development.de',
     license='MIT',
     keywords='joomla cli translations',
+    install_requires=[
+        'configobj == 5.0.6',
+    ],
     setup_requires=['pytest-runner', 'setuptools-markdown'],
     tests_require=['pytest'],
     extras_require={

@@ -1,7 +1,8 @@
 import argparse
-import fnmatch
 import os
 import re
+
+from configobj import ConfigObj
 
 
 class JooTranslate(object):
@@ -16,6 +17,7 @@ class JooTranslate(object):
         self.args = args
         self.search_pattern = r'(label=|description=|JText::_\()(\'|"){1}(.*?)(\'|"){1}'
         self.set_file_paths()
+        self.conf_obj = ConfigObj()
 
     def read_dir(self):
         """
@@ -50,22 +52,18 @@ class JooTranslate(object):
         :return void:
         """
         lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
+
         if not os.path.exists(os.path.dirname(lang_file)):
             os.mkdir(os.path.dirname(lang_file))
-        try:
-            text = open(lang_file, 'r').read()
-        except:
-            text = False
-        with open(lang_file, 'a+') as f:
-            for p in patterns:
-                found = any(p in line for line in f)
-                if not found:
-                    f.seek(0, os.SEEK_END)
-                    if text and not text[-1:] == '\n':
-                        f.write('\n')
-                    f.write('%s=""\n' % p)
-                    f.seek(0, os.SEEK_SET)
-        f.close()
+        if not os.path.isfile(lang_file):
+            f = open(lang_file, 'w+')
+            f.close()
+
+        conf_obj = ConfigObj(lang_file, stringify=True, unrepr=True)
+        for p in patterns:
+            if not p in conf_obj:
+                conf_obj[p] = ""
+        conf_obj.write()
 
     def get_filename(self):
         """
