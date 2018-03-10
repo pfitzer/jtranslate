@@ -21,14 +21,30 @@ Your component needs the following directory structure
             - controllers
             - language
             - etc...
+            
+**new in v0.4.0**
+
+You can now translate directly on console it you want. Jootranslate now uses configobj to read and write the ini files so you
+have to make some changes to yout existing translation files.
+
+Joomla normaly use translations like this
+
+    COM_TEST_KEEPME="translated"
+    
+    but we need it in this format
+    
+    COM_TEST_KEEPME = 'translated'
+    
+    This is working in joomla too, so don`t worry. Please take a look on your existing files, otherwise allready translated
+    strings will be lost!
 
 **installation**
 
-use pip
+    with pip
 
-    pip install jootranslate
+    pip install -U --upgrade jootranslate
 
-local
+    local
 
     python setup.py install
 
@@ -36,8 +52,12 @@ local
 
 
     jootranslate --source /path/to/component/root --com your_component
+    
+    if yout want translate on the fly add -t
+    
+    jootranslate -t --source /path/to/component/root --com your_component
 
-to see a full list of all options
+    to see a full list of all options
 
     jootranslate -h
 

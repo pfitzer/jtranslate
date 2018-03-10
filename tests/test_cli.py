@@ -8,6 +8,7 @@ class Args(object):
     path = os.path.join(TEST_ROOT, 'files')
     com = 'com_test'
     lang = 'en-GB'
+    trans = False
 
 
 class TestCli(object):

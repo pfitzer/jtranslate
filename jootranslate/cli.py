@@ -3,6 +3,7 @@ import os
 import re
 
 from configobj import ConfigObj
+from builtins import input
 
 
 class JooTranslate(object):
@@ -51,17 +52,22 @@ class JooTranslate(object):
         :return void:
         """
         lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
-
+        if self.args.trans and patterns:
+            print('working on %s' % lang_file)
         if not os.path.exists(os.path.dirname(lang_file)):
             os.mkdir(os.path.dirname(lang_file))
         if not os.path.isfile(lang_file):
             f = open(lang_file, 'w+')
             f.close()
 
-        conf_obj = ConfigObj(lang_file, stringify=True, unrepr=True)
+        conf_obj = ConfigObj(lang_file, stringify=True, unrepr=True, encoding='utf-8')
         for p in patterns:
             if not p in conf_obj:
-                conf_obj[p] = ""
+                if self.args.trans:
+                    key = input('translation for: %s\n' % p)
+                    conf_obj[p] = u'%s' % key
+                else:
+                    conf_obj[p] = ""
         conf_obj.write()
 
     def get_filename(self):
@@ -84,9 +90,10 @@ class JooTranslate(object):
 
 def main():
     parser = argparse.ArgumentParser(description='A translation ini file generator for joomla developers')
-    parser.add_argument('--source', dest='path', help="directory to search in", required=True)
-    parser.add_argument('--com', dest='com', help="the name of the component", required=True)
-    parser.add_argument('--lang', dest='lang', default='en-GB', help="language localisation. default is en-GB")
+    parser.add_argument('-s', '--source', dest='path', help="directory to search in", required=True)
+    parser.add_argument('-c', '--com', dest='com', help="the name of the component", required=True)
+    parser.add_argument('-l', '--lang', dest='lang', default='en-GB', help="language localisation. default is en-GB")
+    parser.add_argument('-t', '--translate', dest='trans', action='store_true', help="If you want to translate the strings on console")
     args = parser.parse_args()
     jt = JooTranslate(args=args)
     jt.read_dir()
