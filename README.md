@@ -42,7 +42,7 @@ Joomla normaly use translations like this
 
     with pip
 
-    pip install -U --upgrade jootranslate
+    pip install --user --upgrade jootranslate
 
     local
 
