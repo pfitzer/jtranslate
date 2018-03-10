@@ -15,7 +15,7 @@ class JooTranslate(object):
         :type args: argparse
         """
         self.args = args
-        self.search_pattern = r'(label=|description=|JText::_\()(\'|"){1}(.*?)(\'|"){1}'
+        self.search_pattern = r'(label=|description=|hint=|JText::_\()(\'|"){1}(.*?)(\'|"){1}'
         self.set_file_paths()
 
     def read_dir(self):
