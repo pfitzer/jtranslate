@@ -16,7 +16,7 @@ class JooTranslate(object):
         :type args: argparse
         """
         self.args = args
-        self.search_pattern = r'(label=|description=|hint=|JText::_\()(\'|"){1}(.*?)(\'|"){1}'
+        self.search_pattern = r'(label=|description=|hint=|JText::_\(|JText::script\()(\'|"){1}(.*?)(\'|"){1}'
         self.set_file_paths()
 
     def read_dir(self):
@@ -54,11 +54,9 @@ class JooTranslate(object):
         lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
         if self.args.trans and patterns:
             print('working on %s' % lang_file)
-        if not os.path.exists(os.path.dirname(lang_file)):
-            os.mkdir(os.path.dirname(lang_file))
-        if not os.path.isfile(lang_file):
-            f = open(lang_file, 'w+')
-            f.close()
+
+        self._create_dir(lang_file)
+        self._create_file(lang_file)
 
         conf_obj = ConfigObj(lang_file, stringify=True, unrepr=True, encoding='utf-8')
         for p in patterns:
@@ -69,6 +67,29 @@ class JooTranslate(object):
                 else:
                     conf_obj[p] = ""
         conf_obj.write()
+
+    def _create_file(self, lang_file):
+        """
+        create necessary file if not exist
+
+        :param lang_file: path to the language file
+        :type lang_file: str
+        :return: void
+        """
+        if not os.path.isfile(lang_file):
+            f = open(lang_file, 'w+')
+            f.close()
+
+    def _create_dir(self, lang_file):
+        """
+        create necessary dirs if not exist
+
+        :param lang_file:  path to the language file
+        :type lang_file: str
+        :return: void
+        """
+        if not os.path.exists(os.path.dirname(lang_file)):
+            os.mkdir(os.path.dirname(lang_file))
 
     def get_filename(self):
         """
