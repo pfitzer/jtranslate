@@ -8,6 +8,7 @@ class Args(object):
     path = os.path.join(TEST_ROOT, 'files')
     com = 'com_test'
     lang = 'en-GB'
+    trans = False
 
 
 class TestCli(object):
@@ -21,8 +22,10 @@ class TestCli(object):
 
     @classmethod
     def teardown_class(cls):
-        os.remove(cls.admin_lang)
-        os.rmdir(os.path.dirname(cls.admin_lang))
+        with open(cls.admin_lang, 'r') as f:
+            lines = f.readlines()
+            lines = lines[:1]
+
         os.remove(cls.com_lang)
         os.rmdir(os.path.dirname(cls.com_lang))
 
@@ -32,8 +35,8 @@ class TestCli(object):
 
     def test_file_content(self):
         af = open(self.admin_lang, 'r')
-        assert af.read() == 'COM_TEST_TEST_STRING=""\n'
+        assert af.read() == "COM_TEST_KEEPME = 'translated'\nCOM_TEST_TEST_STRING = ''\n"
         af.close()
         cf = open(self.com_lang, 'r')
-        assert cf.read() == 'COM_TEST_TEST_STRING=""\n'
+        assert cf.read() == "COM_TEST_TEST_STRING = ''\nCOM_TEST_JS_STRING = ''\nCOM_TEST_FORM = ''\n"
         cf.close()
