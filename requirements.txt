@@ -1,5 +1,5 @@
 pytest==4.1.0
-pytest-cov==2.6.0
+pytest-cov==2.6.1
 pytest-runner==4.2
 setuptools-markdown==0.2
 Sphinx==1.8.3
