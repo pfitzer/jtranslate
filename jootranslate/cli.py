@@ -53,7 +53,7 @@ class JooTranslate(object):
         """
         lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
         if self.args.trans and patterns:
-            print('working on %s' % lang_file)
+            print('working on {}'.format(lang_file))
 
         self._create_dir(lang_file)
         self._create_file(lang_file)
@@ -62,8 +62,8 @@ class JooTranslate(object):
         for p in patterns:
             if not p in conf_obj:
                 if self.args.trans:
-                    key = input('translation for: %s\n' % p)
-                    conf_obj[p] = u'%s' % key
+                    key = input('translation for: {}\n'.format(p))
+                    conf_obj[p] = u'{}'.format(key)
                 else:
                     conf_obj[p] = ""
         conf_obj.write()
@@ -97,7 +97,7 @@ class JooTranslate(object):
         :return: name of the language ini file
         :rtype: str
         """
-        return '%s.%s.ini' % (self.args.lang, self.args.com.lower())
+        return '{}.{}.ini'.format(self.args.lang, self.args.com.lower())
 
     def set_file_paths(self):
         """
