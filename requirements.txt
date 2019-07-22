@@ -16,7 +16,7 @@ imagesize==1.1.0
 Jinja2==2.10.1
 livereload==2.6.1
 MarkupSafe==1.1.1
-more-itertools==7.1.0
+more-itertools==7.2.0
 packaging==19.0
 pathtools==0.1.2
 port-for==0.4
