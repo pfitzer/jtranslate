@@ -29,7 +29,7 @@ pyparsing==2.4.2
 pytest==5.0.1
 pytest-cov==2.7.1
 pytest-runner==5.1
-pytz==2019.1
+pytz==2019.2
 PyYAML==5.1.1
 readme-renderer==24.0
 requests==2.22.0
