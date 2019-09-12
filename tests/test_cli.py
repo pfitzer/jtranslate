@@ -22,9 +22,12 @@ class TestCli(object):
 
     @classmethod
     def teardown_class(cls):
-        with open(cls.admin_lang, 'r') as f:
-            lines = f.readlines()
-            lines = lines[:1]
+        rf = open(cls.admin_lang, 'r')
+        lines = rf.readlines()
+        rf.close()
+        wf = open(cls.admin_lang, 'w')
+        wf.writelines(lines[:1])
+        wf.close()
 
         os.remove(cls.com_lang)
         os.rmdir(os.path.dirname(cls.com_lang))

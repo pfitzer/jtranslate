@@ -108,11 +108,7 @@ venv.bak/
 # pycharm
 .idea/
 
-# ini files
-# *.ini
-
 /jootranslate.egg-info/
 
 Pipfile.lock
 /.pytest_cache/
-/tmp/
