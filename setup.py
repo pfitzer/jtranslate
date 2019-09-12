@@ -20,6 +20,7 @@ setup(
     keywords = 'joomla cli translations',
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
+    install_requires=['configobj'],
     packages = find_packages(),
     entry_points = {
         'console_scripts': [
