@@ -8,6 +8,8 @@ from builtins import input
 
 class JooTranslate(object):
     paths = {}
+    not_conform = []
+    missing = []
 
     def __init__(self, args):
         """
@@ -34,9 +36,17 @@ class JooTranslate(object):
                             for l in dest.readlines():
                                 try:
                                     pattern = re.search(self.search_pattern, l.decode(('utf8'))).group(3)
+                                    if pattern == '':
+                                        self.missing.append('{} - {}'.format(dest.name, l))
+                                        continue
                                     if self.args.com.upper() in pattern:
                                         patterns.append(pattern)
-                                except:
+                                    else:
+                                        self.not_conform.append('{} - {}'.format(dest.name, pattern))
+                                except AttributeError:
+                                    continue
+                                except Exception as e:
+                                    print(e)
                                     continue
 
             self.write_file(value, patterns)
@@ -45,7 +55,7 @@ class JooTranslate(object):
         """
         writes all found patterns to the ini file if pattern not exist
 
-        :param path: the path to administrator or component root
+        :param path: the path to admin or component root
         :type path: str
         :param patterns: list of found translation strings
         :type patterns: list
@@ -101,12 +111,21 @@ class JooTranslate(object):
 
     def set_file_paths(self):
         """
-        sets the needed paths to administrator and component part
+        sets the needed paths to admin and component part
 
         :return: void
         """
         self.paths['component'] = os.path.join(self.args.path, 'site')
         self.paths['admin'] = os.path.join(self.args.path, 'admin')
+
+    def print_log(self):
+        print('missing translations:')
+        for m in self.missing:
+            print(m)
+        print('------------------')
+        print('not conform translation strings:')
+        for nc in self.not_conform:
+            print(nc)
 
 
 def main():
@@ -118,6 +137,7 @@ def main():
     args = parser.parse_args()
     jt = JooTranslate(args=args)
     jt.read_dir()
+    jt.print_log()
 
 
 if __name__ == "__main__":
