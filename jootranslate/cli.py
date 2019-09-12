@@ -105,8 +105,8 @@ class JooTranslate(object):
 
         :return: void
         """
-        self.paths['component'] = os.path.join(self.args.path, 'components', self.args.com)
-        self.paths['admin'] = os.path.join(self.args.path, 'administrator', 'components', self.args.com)
+        self.paths['component'] = os.path.join(self.args.path, 'site')
+        self.paths['admin'] = os.path.join(self.args.path, 'admin')
 
 
 def main():
