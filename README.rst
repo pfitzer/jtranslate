@@ -1,4 +1,4 @@
-|image0| |image1| |image2| |image3| |PyPI - Python Version|
+|image0| |image2| |image3| |PyPI - Python Version|
 
 jootranslate
 ------------
@@ -54,8 +54,6 @@ Parse the xml files for translations and generate the \*.sys.ini files
 
 .. |image0| image:: https://img.shields.io/pypi/v/jootranslate.svg
    :target: https://pypi.python.org/pypi?name=jootranslate&:action=display
-.. |image1| image:: https://travis-ci.org/pfitzer/jtranslate.svg?branch=master
-   :target: https://travis-ci.org/pfitzer/jtranslate
 .. |image2| image:: https://pyup.io/repos/github/pfitzer/jtranslate/shield.svg?t=1520427395490
    :target: https://pyup.io/account/repos/github/pfitzer/jtranslate/
 .. |image3| image:: https://pyup.io/repos/github/pfitzer/jtranslate/python-3-shield.svg?t=1520427395491
