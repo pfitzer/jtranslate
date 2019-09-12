@@ -13,6 +13,18 @@ files. If the file exist only new translation strings will be added.
 This is just a little helper so you don\`t have to copy and paste all
 your translation strings by hand.
 
+Your ini files need the following syntax
+
+::
+
+    TRANSLATION_STRING = 'translation'
+    do not use a syntax like
+    TRANSLATION_STRING='translation'
+
+    and only use ' not "
+
+Or you start without any ini files and let jootranslate create it for you.
+
 Your component needs the following directory structure
 
 ::
@@ -32,7 +44,7 @@ use pip
 
 ::
 
-    pip install jootranslate
+    pip install --user jootranslate
 
 local
 
@@ -52,9 +64,18 @@ to see a full list of all options
 
     jootranslate -h
 
-**todo**
+    usage: jootranslate [-h] -s PATH -c COM [-l LANG] [-t]
 
-Parse the xml files for translations and generate the \*.sys.ini files
+    A translation ini file generator for joomla developers
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -s PATH, --source PATH
+                            directory to search in
+      -c COM, --com COM     the name of the component
+      -l LANG, --lang LANG  language localisation. default is en-GB
+      -t, --translate       If you want to translate the strings on console
+
 
 .. |image0| image:: https://img.shields.io/pypi/v/jootranslate.svg
    :target: https://pypi.python.org/pypi?name=jootranslate&:action=display
@@ -64,5 +85,5 @@ Parse the xml files for translations and generate the \*.sys.ini files
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/jootranslate.svg
    :target: https://pypi.python.org/pypi?name=jootranslate&:action=display
 .. |image4| image:: https://img.shields.io/pypi/dm/jootranslate.svg
-    :target: https://pyup.io/repos/github/pfitzer/jootranslate/
+    :target: https://pyup.io/repos/github/pfitzer/jtranslate/
     :alt: PyPI - Downloads

@@ -68,7 +68,12 @@ class JooTranslate(object):
         self._create_dir(lang_file)
         self._create_file(lang_file)
 
-        conf_obj = ConfigObj(lang_file, stringify=True, unrepr=True, encoding='utf-8')
+        try:
+            conf_obj = ConfigObj(lang_file, stringify=True, unrepr=True, encoding='utf-8')
+        except Exception as e:
+            for err in e.errors:
+                print(err.line)
+            raise Exception('Make sure to use \' instead of ". And use spaces like TRANSLATION = \'translation\'')
         for p in patterns:
             if not p in conf_obj:
                 if self.args.trans:
@@ -119,6 +124,7 @@ class JooTranslate(object):
         self.paths['admin'] = os.path.join(self.args.path, 'admin')
 
     def print_log(self):
+        """print some debug information"""
         print('missing translations:')
         for m in self.missing:
             print(m)
