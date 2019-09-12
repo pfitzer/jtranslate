@@ -140,5 +140,5 @@ def main():
     jt.print_log()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

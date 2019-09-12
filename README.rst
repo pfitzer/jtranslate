@@ -1,7 +1,11 @@
-|image0| |image2| |image3| |PyPI - Python Version|
+|image0| |image2| |image3| |PyPI - Python Version| |image4|
 
 jootranslate
 ------------
+
+**hint**
+
+The needed directory structure has changed in version 0.7.2
 
 Searches for JText::\_ translations in php files and generates the ini
 files. If the file exist only new translation strings will be added.
@@ -59,3 +63,6 @@ Parse the xml files for translations and generate the \*.sys.ini files
 .. |image3| image:: https://pyup.io/repos/github/pfitzer/jtranslate/python-3-shield.svg?t=1520427395491
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/jootranslate.svg
    :target: https://pypi.python.org/pypi?name=jootranslate&:action=display
+.. |image4| image:: https://img.shields.io/pypi/dm/jootranslate.svg
+    :target: https://pyup.io/repos/github/pfitzer/jootranslate/
+    :alt: PyPI - Downloads
