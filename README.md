@@ -11,16 +11,13 @@ This is just a little helper so you don`t have to copy and paste all your transl
 Your component needs the following directory structure
 
     admin
-        - components
-            - com_COMPONENTNAME
-                - controllers
-                - language
-                - etc ...
+        - controllers
+        - language
+        - etc ...
     site
-        - com_COMPONENTNAME
-            - controllers
-            - language
-            - etc...
+        - controllers
+        - language
+        - etc...
 
 **installation**
 
