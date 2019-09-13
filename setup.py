@@ -9,20 +9,20 @@ with open(join(this_dir, 'README.rst'), encoding='utf-8') as file:
     long_description = file.read()
 
 setup(
-    name = 'jootranslate',
-    version = __version__,
-    description = 'cli tool to generate translation files for joomla',
-    long_description = long_description,
-    url = 'https://github.com/pfitzer/jtranslate.git',
-    author = __author__,
-    author_email = 'michael@mp-development.de',
-    license = 'MIT',
-    keywords = 'joomla cli translations',
+    name='jootranslate',
+    version=__version__,
+    description='cli tool to generate translation files for joomla',
+    long_description=long_description,
+    url='https://github.com/pfitzer/jtranslate.git',
+    author=__author__,
+    author_email='michael@mp-development.de',
+    license='MIT',
+    keywords='joomla cli translations',
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     install_requires=['configobj'],
-    packages = find_packages(),
-    entry_points = {
+    packages=find_packages(),
+    entry_points={
         'console_scripts': [
             'jootranslate=jootranslate.cli:main',
         ],

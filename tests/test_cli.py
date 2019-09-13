@@ -1,10 +1,14 @@
-import sys, os
+import os
+import sys
+
+import argparse as argparse
 
 TEST_ROOT = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, TEST_ROOT + '/../')
+sys.path.insert(0, os.path.join(TEST_ROOT, '..'))
 from jootranslate.cli import JooTranslate
 
-class Args(object):
+
+class Args(argparse.ArgumentParser):
     path = os.path.join(TEST_ROOT, 'files')
     com = 'com_test'
     lang = 'en-GB'
@@ -12,13 +16,18 @@ class Args(object):
 
 
 class TestCli(object):
+    com_lang = None
+    admin_lang = None
+
     @classmethod
     def setup_class(cls):
         args = Args()
         cls.jt = JooTranslate(args=args)
         cls.jt.read_dir()
-        cls.admin_lang = os.path.join(cls.jt.paths['admin'], 'language', args.lang, cls.jt.get_filename())
-        cls.com_lang = os.path.join(cls.jt.paths['component'], 'language', args.lang, cls.jt.get_filename())
+        cls.admin_lang = os.path.join(
+            cls.jt.paths['admin'], 'language', args.lang, cls.jt.get_filename())
+        cls.com_lang = os.path.join(
+            cls.jt.paths['component'], 'language', args.lang, cls.jt.get_filename())
 
     @classmethod
     def teardown_class(cls):

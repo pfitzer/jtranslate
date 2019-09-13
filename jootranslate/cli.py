@@ -1,9 +1,9 @@
 import argparse
 import os
 import re
+from builtins import input
 
 from configobj import ConfigObj
-from builtins import input
 
 
 class JooTranslate(object):
@@ -11,17 +11,17 @@ class JooTranslate(object):
     not_conform = []
     missing = []
 
-    def __init__(self, args):
+    def __init__(self, args: argparse.ArgumentParser) -> None:
         """
 
-        :param args: console arguments
-        :type args: argparse
+        :param args:
+        :type args: argparse.ArgumentParser
         """
         self.args = args
         self.search_pattern = r'(label=|description=|hint=|JText::_\(|JText::script\()(\'|"){1}(.*?)(\'|"){1}'
         self.set_file_paths()
 
-    def read_dir(self):
+    def read_dir(self) -> None:
         """
         reads all php and xml files and searches for regex pattern
 
@@ -33,25 +33,35 @@ class JooTranslate(object):
                 for filename in files:
                     if filename.endswith(('.php', '.xml')):
                         with open(os.path.join(folder, filename), 'rb') as dest:
-                            for l in dest.readlines():
-                                try:
-                                    pattern = re.search(self.search_pattern, l.decode(('utf8'))).group(3)
-                                    if pattern == '':
-                                        self.missing.append('{} - {}'.format(dest.name, l))
-                                        continue
-                                    if self.args.com.upper() in pattern:
-                                        patterns.append(pattern)
-                                    else:
-                                        self.not_conform.append('{} - {}'.format(dest.name, pattern))
-                                except AttributeError:
-                                    continue
-                                except Exception as e:
-                                    print(e)
-                                    continue
+                            patterns = patterns + self._get_pattern(dest)
 
             self.write_file(value, patterns)
 
-    def write_file(self, path, patterns):
+    def _get_pattern(self, dest) -> list:
+        """
+
+        :param dest:
+        :return:
+        """
+        patterns = []
+        for l in dest.readlines():
+            try:
+                pattern = re.search(self.search_pattern, l.decode(('utf8'))).group(3)
+                if pattern == '':
+                    self.missing.append('{} - {}'.format(dest.name, l))
+                    continue
+                if self.args.com.upper() in pattern:
+                    patterns.append(pattern)
+                else:
+                    self.not_conform.append('{} - {}'.format(dest.name, pattern))
+            except AttributeError:
+                continue
+            except Exception as e:
+                print(e)
+                continue
+        return patterns
+
+    def write_file(self, path, patterns) -> None:
         """
         writes all found patterns to the ini file if pattern not exist
 
@@ -75,7 +85,7 @@ class JooTranslate(object):
                 print(err.line)
             raise Exception('Make sure to use \' instead of ". And use spaces like TRANSLATION = \'translation\'')
         for p in patterns:
-            if not p in conf_obj:
+            if p not in conf_obj:
                 if self.args.trans:
                     key = input('translation for: {}\n'.format(p))
                     conf_obj[p] = u'{}'.format(key)
@@ -83,7 +93,7 @@ class JooTranslate(object):
                     conf_obj[p] = ""
         conf_obj.write()
 
-    def _create_file(self, lang_file):
+    def _create_file(self, lang_file) -> None:
         """
         create necessary file if not exist
 
@@ -95,7 +105,7 @@ class JooTranslate(object):
             f = open(lang_file, 'w+')
             f.close()
 
-    def _create_dir(self, lang_file):
+    def _create_dir(self, lang_file) -> None:
         """
         create necessary dirs if not exist
 
@@ -106,7 +116,7 @@ class JooTranslate(object):
         if not os.path.exists(os.path.dirname(lang_file)):
             os.mkdir(os.path.dirname(lang_file))
 
-    def get_filename(self):
+    def get_filename(self) -> str:
         """
 
         :return: name of the language ini file
@@ -114,7 +124,7 @@ class JooTranslate(object):
         """
         return '{}.{}.ini'.format(self.args.lang, self.args.com.lower())
 
-    def set_file_paths(self):
+    def set_file_paths(self) -> None:
         """
         sets the needed paths to admin and component part
 
@@ -123,7 +133,7 @@ class JooTranslate(object):
         self.paths['component'] = os.path.join(self.args.path, 'site')
         self.paths['admin'] = os.path.join(self.args.path, 'admin')
 
-    def print_log(self):
+    def print_log(self) -> None:
         """print some debug information"""
         print('missing translations:')
         for m in self.missing:
@@ -139,7 +149,9 @@ def main():
     parser.add_argument('-s', '--source', dest='path', help="directory to search in", required=True)
     parser.add_argument('-c', '--com', dest='com', help="the name of the component", required=True)
     parser.add_argument('-l', '--lang', dest='lang', default='en-GB', help="language localisation. default is en-GB")
-    parser.add_argument('-t', '--translate', dest='trans', action='store_true', help="If you want to translate the strings on console")
+    parser.add_argument(
+        '-t', '--translate', dest='trans', action='store_true',
+        help="If you want to translate the strings on console")
     args = parser.parse_args()
     jt = JooTranslate(args=args)
     jt.read_dir()
