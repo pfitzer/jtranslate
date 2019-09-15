@@ -19,6 +19,8 @@ class JooTranslate(object):
         """
         self.args = args
         self.search_pattern = r'(label=|description=|hint=|JText::_\(|JText::script\()(\'|"){1}(.*?)(\'|"){1}'
+        self.config_search_pattern = r'(title=)(\'|\"){1}(.*?)(\'|\"){1}|(<\!\[CDATA\[)(.*?)(]){1}'
+        self.settings_search_pattern = r'(<name>|<description>)(.*?)(</name>|</description>)'
         self.set_file_paths()
 
     def read_dir(self) -> None:
@@ -27,17 +29,34 @@ class JooTranslate(object):
 
         :return void:
         """
+        patterns = []
+        # settings = open(os.path.join(self.args.path, self.args.com), 'r')
+        # patterns = patterns + self._get_pattern(settings, self.settings_search_pattern)
         for key, value in self.paths.items():
-            patterns = []
             for folder, dirs, files in os.walk(value, topdown=False):
                 for filename in files:
                     if filename.endswith(('.php', '.xml')):
                         with open(os.path.join(folder, filename), 'rb') as dest:
-                            patterns = patterns + self._get_pattern(dest)
+                            patterns = patterns + self._get_pattern(dest, self.search_pattern)
 
             self.write_file(value, patterns)
 
-    def _get_pattern(self, dest) -> list:
+    def read_menu_configs(self) -> None:
+        """
+        reads all php and xml files and searches for regex pattern
+
+        :return void:
+        """
+        patterns = []
+        for folder, dirs, files in os.walk(os.path.join(self.paths['component'], 'views'), topdown=False):
+            for filename in files:
+                if filename.endswith(('.xml')):
+                    with open(os.path.join(folder, filename), 'rb') as dest:
+                        patterns = patterns + self._get_pattern(dest, self.config_search_pattern)
+
+        self.write_file(self.paths['admin'], patterns, True)
+
+    def _get_pattern(self, dest, search_pattern) -> list:
         """
 
         :param dest:
@@ -46,7 +65,9 @@ class JooTranslate(object):
         patterns = []
         for l in dest.readlines():
             try:
-                pattern = re.search(self.search_pattern, l.decode(('utf8'))).group(3)
+                pattern = re.search(search_pattern, l.decode(('utf8'))).group(3)
+                if not pattern:
+                    pattern = re.search(search_pattern, l.decode(('utf8'))).group(6)
                 if pattern == '':
                     self.missing.append('{} - {}'.format(dest.name, l))
                     continue
@@ -61,7 +82,7 @@ class JooTranslate(object):
                 continue
         return patterns
 
-    def write_file(self, path, patterns) -> None:
+    def write_file(self, path, patterns, sys=False) -> None:
         """
         writes all found patterns to the ini file if pattern not exist
 
@@ -71,7 +92,7 @@ class JooTranslate(object):
         :type patterns: list
         :return void:
         """
-        lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename())
+        lang_file = os.path.join(path, 'language', self.args.lang, self.get_filename(sys=sys))
         if self.args.trans and patterns:
             print('working on {}'.format(lang_file))
 
@@ -116,12 +137,15 @@ class JooTranslate(object):
         if not os.path.exists(os.path.dirname(lang_file)):
             os.mkdir(os.path.dirname(lang_file))
 
-    def get_filename(self) -> str:
+    def get_filename(self, sys=False) -> str:
         """
-
+        :param: sys
+        :type sys: bool
         :return: name of the language ini file
         :rtype: str
         """
+        if sys:
+            return '{}.{}.sys.ini'.format(self.args.lang, self.args.com.lower())
         return '{}.{}.ini'.format(self.args.lang, self.args.com.lower())
 
     def set_file_paths(self) -> None:
@@ -155,6 +179,7 @@ def main():
     args = parser.parse_args()
     jt = JooTranslate(args=args)
     jt.read_dir()
+    jt.read_menu_configs()
     jt.print_log()
 
 
