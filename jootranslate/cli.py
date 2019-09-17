@@ -20,7 +20,7 @@ class JooTranslate(object):
         self.args = args
         self.search_pattern = r'(label=|description=|hint=|JText::_\(|JText::script\()(\'|"){1}(.*?)(\'|"){1}'
         self.config_search_pattern = r'(title=)(\'|\"){1}(.*?)(\'|\"){1}|(<\!\[CDATA\[)(.*?)(]){1}'
-        self.settings_search_pattern = r'(<name>|<description>)(.*?)(</name>|</description>)'
+        self.settings_search_pattern = r'(<){1}(name>|description>)(.*?)(<\/){1}(name|description)(>){1}'
         self.set_file_paths()
         self.read_dir()
         self.read_menu_configs()
@@ -32,12 +32,15 @@ class JooTranslate(object):
 
         :return void:
         """
-        patterns = []
-        # settings_file = os.path.join(self.args.path, '{}.xml'.format(self.args.com.split('_')[1]))
-        # if os.path.isfile(settings_file):
-        #     settings = open(settings_file, 'rb')
-        #     patterns = patterns + self._get_pattern(settings, self.settings_search_pattern, True)
+        matches = []
+        settings_file = os.path.join(self.args.path, '{}.xml'.format(self.args.com.split('_')[1]))
+        if os.path.isfile(settings_file):
+            settings = open(settings_file, 'rb')
+            matches = self._get_pattern(settings, self.settings_search_pattern)
         for key, value in self.paths.items():
+            patterns = []
+            if key == 'admin':
+                patterns = patterns + matches
             for folder, dirs, files in os.walk(value, topdown=False):
                 for filename in files:
                     if filename.endswith(('.php', '.xml')):

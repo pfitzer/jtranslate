@@ -7,8 +7,17 @@ jootranslate
 
 The needed directory structure has changed in version 0.7.2
 
-Searches for JText::\_ translations in php files and generates the ini
-files. If the file exist only new translation strings will be added.
+Used search filters in php and xml files:
+
+* JText::_("COM_COMPONENTNAME")
+* JText::script("COM_COMPONENTNAME")
+* label="COM_COMPONENTNAME"
+* description="COM_COMPONENTNAME"
+* hint="COM_COMPONENTNAME"
+* title="COM_COMPONENTNAME"
+* <name>COM_COMPONENTNAME</name>
+* <description>COM_COMPONENTNAME</description>
+* <![CDATA[COM_COMPONENTNAME]]>
 
 This is just a little helper so you don\`t have to copy and paste all
 your translation strings by hand.

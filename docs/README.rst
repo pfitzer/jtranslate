@@ -1,62 +1,63 @@
-|image0| |image1| |image2| |Python 3| |PyPI - Python Version|
-|Documentation Status|
+|image0| |image2| |image3| |PyPI - Python Version| |image4|
 
 jootranslate
 ------------
 
-Searches for JText::\_ translations in php and label\|description in xml
-files and generates the ini files. If the file exist only new
-translation strings will be added. Your translation strings have to
-start with COM\_COMPONENTNAME to get accepted.
+**hint**
+
+The needed directory structure has changed in version 0.7.2
+
+Used search filters in php and xml files:
+
+* JText::_("COM_COMPONENTNAME")
+* JText::script("COM_COMPONENTNAME")
+* label="COM_COMPONENTNAME"
+* description="COM_COMPONENTNAME"
+* hint="COM_COMPONENTNAME"
+* title="COM_COMPONENTNAME"
+* <name>COM_COMPONENTNAME</name>
+* <description>COM_COMPONENTNAME</description>
+* <![CDATA[COM_COMPONENTNAME]]>
 
 This is just a little helper so you don\`t have to copy and paste all
 your translation strings by hand.
+
+Your ini files need the following syntax
+
+::
+
+    TRANSLATION_STRING = 'translation'
+    do not use a syntax like
+    TRANSLATION_STRING='translation'
+
+    and only use ' not "
+
+Or you start without any ini files and let jootranslate create it for you.
 
 Your component needs the following directory structure
 
 ::
 
-    administrator
-        - components
-            - com_COMPONENTNAME
-                - controllers
-                - language
-                - etc ...
-    components
-        - com_COMPONENTNAME
-            - controllers
-            - language
-            - etc...
-            
-
-**new in v0.4.0**
-
-You can now translate directly on console it you want. Jootranslate now
-uses configobj to read and write the ini files so you have to make some
-changes to yout existing translation files.
-
-Joomla normaly use translations like this
-
-::
-
-    COM_TEST_KEEPME="translated"
-
-    but we need it in this format
-
-    COM_TEST_KEEPME = 'translated'
-
-    This is working in joomla too, so don`t worry. Please take a look on your existing files, otherwise allready translated
-    strings will be lost!
+    admin
+        - controllers
+        - language
+        - etc ...
+    site
+        - controllers
+        - language
+        - etc...
 
 **installation**
 
+use pip
+
 ::
 
-    with pip
+    pip install --user jootranslate
 
-    pip install --user --upgrade jootranslate
+local
 
-    local
+::
 
     python setup.py install
 
@@ -66,27 +67,32 @@ Joomla normaly use translations like this
 
     jootranslate --source /path/to/component/root --com your_component
 
-    if yout want translate on the fly add -t
+to see a full list of all options
 
-    jootranslate -t --source /path/to/component/root --com your_component
-
-    to see a full list of all options
+::
 
     jootranslate -h
 
-**todo**
+    usage: jootranslate [-h] -s PATH -c COM [-l LANG] [-t]
 
-Generate the \*.sys.ini files
+    A translation ini file generator for joomla developers
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -s PATH, --source PATH
+                            directory to search in
+      -c COM, --com COM     the name of the component
+      -l LANG, --lang LANG  language localisation. default is en-GB
+      -t, --translate       If you want to translate the strings on console
+
 
 .. |image0| image:: https://img.shields.io/pypi/v/jootranslate.svg
    :target: https://pypi.python.org/pypi?name=jootranslate&:action=display
-.. |image1| image:: https://travis-ci.org/pfitzer/jtranslate.svg?branch=master
-   :target: https://travis-ci.org/pfitzer/jtranslate
 .. |image2| image:: https://pyup.io/repos/github/pfitzer/jtranslate/shield.svg?t=1520427395490
    :target: https://pyup.io/account/repos/github/pfitzer/jtranslate/
-.. |Python 3| image:: https://pyup.io/repos/github/pfitzer/jtranslate/python-3-shield.svg
-   :target: https://pyup.io/repos/github/pfitzer/jtranslate/
+.. |image3| image:: https://pyup.io/repos/github/pfitzer/jtranslate/python-3-shield.svg?t=1520427395491
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/jootranslate.svg
    :target: https://pypi.python.org/pypi?name=jootranslate&:action=display
-.. |Documentation Status| image:: https://readthedocs.org/projects/jootranslate/badge/?version=latest
-   :target: http://jootranslate.readthedocs.io/?badge=latest
+.. |image4| image:: https://img.shields.io/pypi/dm/jootranslate.svg
+    :target: https://pyup.io/repos/github/pfitzer/jtranslate/
+    :alt: PyPI - Downloads
