@@ -22,6 +22,9 @@ class JooTranslate(object):
         self.config_search_pattern = r'(title=)(\'|\"){1}(.*?)(\'|\"){1}|(<\!\[CDATA\[)(.*?)(]){1}'
         self.settings_search_pattern = r'(<name>|<description>)(.*?)(</name>|</description>)'
         self.set_file_paths()
+        self.read_dir()
+        self.read_menu_configs()
+        self.print_log()
 
     def read_dir(self) -> None:
         """
@@ -30,8 +33,10 @@ class JooTranslate(object):
         :return void:
         """
         patterns = []
-        # settings = open(os.path.join(self.args.path, self.args.com), 'r')
-        # patterns = patterns + self._get_pattern(settings, self.settings_search_pattern)
+        # settings_file = os.path.join(self.args.path, '{}.xml'.format(self.args.com.split('_')[1]))
+        # if os.path.isfile(settings_file):
+        #     settings = open(settings_file, 'rb')
+        #     patterns = patterns + self._get_pattern(settings, self.settings_search_pattern, True)
         for key, value in self.paths.items():
             for folder, dirs, files in os.walk(value, topdown=False):
                 for filename in files:
@@ -178,9 +183,6 @@ def main():
         help="If you want to translate the strings on console")
     args = parser.parse_args()
     jt = JooTranslate(args=args)
-    jt.read_dir()
-    jt.read_menu_configs()
-    jt.print_log()
 
 
 if __name__ == '__main__':

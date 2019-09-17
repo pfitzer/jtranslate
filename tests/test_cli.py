@@ -18,16 +18,18 @@ class Args(argparse.ArgumentParser):
 class TestCli(object):
     com_lang = None
     admin_lang = None
+    com_ini = None
 
     @classmethod
     def setup_class(cls):
         args = Args()
         cls.jt = JooTranslate(args=args)
-        cls.jt.read_dir()
         cls.admin_lang = os.path.join(
             cls.jt.paths['admin'], 'language', args.lang, cls.jt.get_filename())
         cls.com_lang = os.path.join(
             cls.jt.paths['component'], 'language', args.lang, cls.jt.get_filename())
+        cls.com_ini = os.path.join(
+            cls.jt.paths['admin'], 'language', args.lang, cls.jt.get_filename(sys=True))
 
     @classmethod
     def teardown_class(cls):
@@ -39,15 +41,17 @@ class TestCli(object):
         wf.close()
 
         os.remove(cls.com_lang)
+        os.remove(cls.com_ini)
         os.rmdir(os.path.dirname(cls.com_lang))
 
     def test_files_exist(self):
         assert os.path.isfile(self.admin_lang)
         assert os.path.isfile(self.com_lang)
+        assert os.path.isfile(self.com_ini)
 
     def test_file_content(self):
         af = open(self.admin_lang, 'r')
-        assert af.read() == "COM_TEST_KEEPME = 'translated'\nCOM_TEST_TEST_STRING = ''\n"
+        assert af.read() == "COM_TEST_KEEPME = 'translated'\nCOM_TEST_TEST_STRING = ''\nCOM_TEST_JS_STRING = ''\nCOM_TEST_FORM = ''\n"
         af.close()
         cf = open(self.com_lang, 'r')
         assert cf.read() == "COM_TEST_TEST_STRING = ''\nCOM_TEST_JS_STRING = ''\nCOM_TEST_FORM = ''\n"
