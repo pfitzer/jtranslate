@@ -43,14 +43,14 @@ class TestCli(object):
 
         os.remove(cls.com_lang)
         os.remove(cls.com_ini)
-        os.remove(os.path.join(TEST_ROOT, 'translate_log.txt'))
+        os.remove(JooTranslate.get_logfile())
         os.rmdir(os.path.dirname(cls.com_lang))
 
     def test_files_exist(self):
         assert os.path.isfile(self.admin_lang)
         assert os.path.isfile(self.com_lang)
         assert os.path.isfile(self.com_ini)
-        assert os.path.isfile(os.path.join(TEST_ROOT, 'translate_log.txt'))
+        assert os.path.isfile(JooTranslate.get_logfile())
 
     def test_file_content(self):
         af = open(self.admin_lang, 'r')
@@ -62,6 +62,6 @@ class TestCli(object):
         cf.close()
 
     def test_logfile(self):
-        lf = open(os.path.join(TEST_ROOT, 'translate_log.txt'), 'r')
+        lf = open(JooTranslate.get_logfile(), 'r')
         assert 'this is wrong' in lf.read()
         lf.close()

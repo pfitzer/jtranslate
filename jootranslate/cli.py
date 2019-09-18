@@ -2,6 +2,7 @@ import argparse
 import os
 import re
 from builtins import input
+from typing import Union
 
 from configobj import ConfigObj
 
@@ -10,6 +11,7 @@ class JooTranslate(object):
     paths = {}
     not_conform = []
     missing = []
+    logfile = os.path.join(os.getcwd(), 'jootranslate.log')
 
     def __init__(self, args: argparse.ArgumentParser) -> None:
         """
@@ -25,6 +27,11 @@ class JooTranslate(object):
         self.read_dir()
         self.read_menu_configs()
         self.print_log()
+
+    @staticmethod
+    def get_logfile() -> Union[bytes, str]:
+        """get the path of the logfile"""
+        return JooTranslate.logfile
 
     def read_dir(self) -> None:
         """
@@ -168,7 +175,7 @@ class JooTranslate(object):
     def print_log(self) -> None:
         """print some debug information"""
         if self.args.log:
-            log_file = open('translate_log.txt', 'w+')
+            log_file = open(self.logfile, 'w+')
             log_file.write('missing translations:\n')
             for m in self.missing:
                 log_file.write(m + '\n')
