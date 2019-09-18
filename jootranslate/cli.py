@@ -167,13 +167,23 @@ class JooTranslate(object):
 
     def print_log(self) -> None:
         """print some debug information"""
-        print('missing translations:')
-        for m in self.missing:
-            print(m)
-        print('------------------')
-        print('not conform translation strings:')
-        for nc in self.not_conform:
-            print(nc)
+        if self.args.log:
+            log_file = open('translate_log.txt', 'w+')
+            log_file.write('missing translations:\n')
+            for m in self.missing:
+                log_file.write(m + '\n')
+            log_file.write('not conform translation strings:\n')
+            for nc in self.not_conform:
+                log_file.write(nc + '\n')
+            log_file.close()
+        else:
+            print('missing translations:')
+            for m in self.missing:
+                print(m)
+            print('------------------')
+            print('not conform translation strings:')
+            for nc in self.not_conform:
+                print(nc)
 
 
 def main():
@@ -184,6 +194,7 @@ def main():
     parser.add_argument(
         '-t', '--translate', dest='trans', action='store_true',
         help="If you want to translate the strings on console")
+    parser.add_argument("--logfile", dest='log', default=False, action="store_true", help="write stdout to logfile")
     args = parser.parse_args()
     jt = JooTranslate(args=args)
 

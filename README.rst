@@ -1,4 +1,4 @@
-|image0| |image2| |image3| |PyPI - Python Version| |image4|
+|image0| |image2| |image3| |PyPI - Python Version| |image4| |Docs|
 
 jootranslate
 ------------
@@ -96,3 +96,6 @@ to see a full list of all options
 .. |image4| image:: https://img.shields.io/pypi/dm/jootranslate.svg
     :target: https://pyup.io/repos/github/pfitzer/jtranslate/
     :alt: PyPI - Downloads
+.. |Docs| image:: https://readthedocs.org/projects/jootranslate/badge/?version=latest&style=flat
+    :target: https://jootranslate.readthedocs.io/
+    :alt: Read the Docs

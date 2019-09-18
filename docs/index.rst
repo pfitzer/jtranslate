@@ -6,13 +6,12 @@
 Indices and tables
 ==================
 
+.. toctree::
+   :maxdepth: 1
+
+.. include:: ../README.rst
+
+
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-.. include:: README.rst
-
-.. toctree::
-   :maxdepth: 2
-
-   jootranslate

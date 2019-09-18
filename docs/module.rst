@@ -2,7 +2,7 @@ Classes and Methods
 ===================
 
 .. automodule:: jootranslate
-.. autoclass:: JooTranslate
+.. autoclass:: jootranslate.cli.JooTranslate
     :members:
     :undoc-members:
     :show-inheritance:
