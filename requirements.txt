@@ -10,7 +10,7 @@ colorama==0.4.1
 configobj==5.0.6
 coverage==4.5.4
 docutils==0.15.2
-future==0.18.0
+future==0.18.1
 idna==2.8
 imagesize==1.1.0
 importlib-metadata==0.23
