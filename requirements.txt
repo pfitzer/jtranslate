@@ -38,7 +38,7 @@ requests-toolbelt==0.9.1
 setuptools-markdown==0.4.1
 six==1.15.0
 snowballstemmer==2.0.0
-Sphinx==3.4.3
+Sphinx==3.5.1
 sphinx-autobuild==2020.9.1
 sphinxcontrib-applehelp==1.0.2
 sphinxcontrib-devhelp==1.0.2
