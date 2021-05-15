@@ -28,7 +28,7 @@ Pygments==2.7.4
 pypandoc==1.5
 pyparsing==2.4.7
 pytest==6.2.1
-pytest-cov==2.11.1
+pytest-cov==2.12.0
 pytest-runner==5.2
 pytz==2020.5
 PyYAML==5.4.1
