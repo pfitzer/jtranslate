@@ -9,7 +9,7 @@ chardet==4.0.0
 colorama==0.4.4
 configobj==5.0.6
 coverage==5.3.1
-docutils==0.16
+docutils==0.18
 future==0.18.2
 idna==2.10
 imagesize==1.2.0
