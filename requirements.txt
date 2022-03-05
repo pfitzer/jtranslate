@@ -32,7 +32,7 @@ pytest-cov==2.11.1
 pytest-runner==5.2
 pytz==2020.5
 PyYAML==5.4.1
-readme-renderer==28.0
+readme-renderer==33.0
 requests==2.25.1
 requests-toolbelt==0.9.1
 setuptools-markdown==0.4.1
