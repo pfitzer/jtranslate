@@ -6,7 +6,7 @@ Babel==2.9.0
 bleach==3.2.2
 certifi==2020.12.5
 chardet==4.0.0
-colorama==0.4.4
+colorama==0.4.5
 configobj==5.0.6
 coverage==5.3.1
 docutils==0.16
