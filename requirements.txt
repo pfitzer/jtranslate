@@ -33,7 +33,7 @@ pytest-runner==5.2
 pytz==2020.5
 PyYAML==5.4.1
 readme-renderer==28.0
-requests==2.25.1
+requests==2.28.1
 requests-toolbelt==0.9.1
 setuptools-markdown==0.4.1
 six==1.15.0
